@@ -1,0 +1,110 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Germán
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <!-- balance -->
+    <ion-grid lines="full" class="bg-color-tertiary">
+        <ion-row>
+            <ion-col size="8" padding>
+                <div>
+                    <ion-text class="px12">Balance mensual</ion-text>
+                </div>
+                <div>
+                    <ion-text class="px22">€ {{ monthBalance | number : '1.2-2' }}</ion-text>
+                </div>
+                <div>
+                    <ion-text class="px12">Balance acumulado</ion-text>
+                </div>
+                <div>
+                    <ion-text class="px16">€ {{ accountBalance | number : '1.2-2' }}</ion-text>
+                </div>
+            </ion-col>
+
+            <ion-col size="4" padding text-right>
+                <div>
+                    <ion-text class="px12">Ingresos mes</ion-text>
+                </div>
+                <div>
+                    <ion-text class="px16">€ {{ monthIncome | number : '1.2-2' }}</ion-text>
+                </div>
+                <div>
+                    <ion-text class="px12">Gastos mes</ion-text>
+                </div>
+                <div>
+                    <ion-text class="px16">€ {{ monthExpense | number : '1.2-2' }}</ion-text>
+                </div>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+    <!-- end balance -->
+
+    <!-- select month -->
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+            <ion-icon name="calendar"></ion-icon>
+            <ion-datetime [(ngModel)]="datepicker" (ngModelChange)="show()" placeholder="Selecciona" display-format="MMMM, YYYY" picker-format="MMMM, YYYY" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
+        </ion-item>
+    </ion-list>
+    <!-- end select month -->
+
+    <!-- list -->
+    <ion-card>
+        <ion-grid>
+            <ion-row *ngFor="let item of itemsShow" class="padding-list px15" (click)="detailModal(item)">
+                <ion-col size="1" class="ion-text-center">
+                    <ion-text>
+                        <img [src]="item.category | iconurl" alt="" style="margin-top: 5px;">
+                    </ion-text>
+                </ion-col>
+                <ion-col size="7">
+                    <div>
+                        <ion-text>
+                            {{ item.title | titlecase }}
+                        </ion-text>
+                    </div>
+                    <div>
+                        <ion-text class="text-grey px12"> {{ this.extrasService.name(item.category) }} </ion-text>
+                    </div>
+                </ion-col>
+                <ion-col class="ion-text-right">
+                    <div>
+                        <ion-text [className]="(item.amount>=0) ? 'text-green' : ''">
+                            € {{ item.amount | number : '1.2-2' }}
+                        </ion-text>
+                    </div>
+                    <div>
+                        <ion-text class="text-grey px12"> {{ item.date | fixdate }} </ion-text>
+                    </div>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+    <!-- end list -->
+
+    <ion-card *ngIf="itemsShow.length===0">
+        <ion-card-header>
+            <ion-card-subtitle>Comienza Ahora</ion-card-subtitle>
+            <ion-card-title>Bienvenido</ion-card-title>
+        </ion-card-header>
+        <ion-card-content>
+            <p>Pulsa el signo de + para agregar tu ingreso o gasto.</p>
+        </ion-card-content>
+    </ion-card>
+
+
+    <ion-fab horizontal="end" vertical="bottom" slot="fixed" (click)="add()">
+        <ion-fab-button color="danger">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
+
+</ion-content>

@@ -9,13 +9,28 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 
+import { IonicStorageModule } from '@ionic/storage';
+import { ChartsModule } from 'ng2-charts';
+
+import { ModalItemComponent } from './pages/modal-item/modal-item.component';
+import { ModalCategoryComponent } from './pages/modal-category/modal-category.component';
+
 @NgModule({
-  declarations: [AppComponent],
-  entryComponents: [],
+  declarations: [
+    AppComponent,
+    ModalItemComponent,
+    ModalCategoryComponent
+  ],
+  entryComponents: [
+    ModalItemComponent,
+    ModalCategoryComponent
+],
   imports: [
     BrowserModule,
     IonicModule.forRoot(),
-    AppRoutingModule
+    AppRoutingModule,
+    IonicStorageModule.forRoot(),
+    ChartsModule
   ],
   providers: [
     StatusBar,
@@ -24,4 +39,5 @@ import { AppRoutingModule } from './app-routing.module';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+}

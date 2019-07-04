@@ -1,0 +1,75 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-buttons slot="start" type="button">
+            <ion-label (click)="goHome()">
+                <ion-icon name="arrow-back"></ion-icon> Volver</ion-label>
+        </ion-buttons>
+        <ion-title>
+            Agregar
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <!-- init add -->
+    <ion-list lines="full" class="ion-no-margin ion-no-padding">
+        <ion-item>
+            <ion-label position="stacked">Cantidad €
+                <ion-text color="danger">*</ion-text>
+            </ion-label>
+            <ion-input required type="number" #amount step="0.01" class="ion-text-center px22" placeholder="0.00"></ion-input>
+        </ion-item>
+
+        <ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col>
+                        <ion-text *ngIf="type=='expense'" (click)="changeType('income')" color="danger">Gasto
+                            <ion-icon name="arrow-down"></ion-icon>
+                        </ion-text>
+                        <ion-text *ngIf="type=='income'" (click)="changeType('expense')" class="text-green">Ingreso
+                            <ion-icon name="arrow-up"></ion-icon>
+                        </ion-text>
+                    </ion-col>
+                    <ion-col class="ion-text-right" (click)="detailModal()">
+                        <ion-text color="primary">Categoría
+                            <ion-icon name="arrow-forward"></ion-icon>
+                        </ion-text>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+        <ion-item>
+            <ion-grid>
+                <ion-row>
+                    <ion-col class="ion-text-center">
+                        <ion-text [class.text-blue]="(selected==='yesterday')" (click)="changeSelected('yesterday')">Ayer</ion-text>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-text [class.text-blue]="(selected==='today')" (click)="changeSelected('today')">Hoy</ion-text>
+                    </ion-col>
+                    <ion-col class="ion-text-center">
+                        <ion-item (click)="changeSelected('other')">
+                            <ion-datetime #datetime placeholder="Otra"></ion-datetime>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+            </ion-grid>
+        </ion-item>
+
+        <ion-item>
+            <ion-label position="stacked">Concepto <i>(opcional)</i>
+            </ion-label>
+            <ion-input type="text" [(ngModel)]="newItem.title" placeholder="Cena"></ion-input>
+        </ion-item>
+
+    </ion-list>
+
+    <div class="ion-padding">
+        <ion-button expand="block" type="submit" class="ion-no-margin" (click)="addItem(amount.value, datetime.value)">Agregar</ion-button>
+    </div>
+    <!-- end add -->
+
+</ion-content>

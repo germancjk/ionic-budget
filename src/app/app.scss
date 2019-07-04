@@ -4,3 +4,89 @@
 // styles are for the entire app and not just one component. Additionally, this 
 // file can hold Sass mixins, functions, and placeholder classes to be imported 
 // and used throughout the application.
+@font-face {
+    font-family: OpenSans;
+    font-style: regular;
+    src: url(../assets/fonts/OpenSans/OpenSans-Regular.ttf);
+}
+
+* {
+    font-family: 'OpenSans' !important;
+}
+
+.padding-list {
+    padding: 5px 0 5px 0 !important;
+}
+
+.margin-bottom-10px {
+    margin-bottom: 10px;
+}
+
+.border-top {
+    border-top: 1px solid #eaeaea;
+}
+
+.border-bottom {
+    border-bottom: 1px solid #eaeaea;
+}
+
+.px24 {
+    font-size: 24px;
+}
+
+.px22 {
+    font-size: 22px;
+}
+
+.px18 {
+    font-size: 18px;
+}
+
+.px16 {
+    font-size: 16px;
+}
+
+.px14 {
+    font-size: 14px;
+}
+
+.px15 {
+    font-size: 15px;
+}
+
+.px12 {
+    font-size: 12px;
+}
+
+.text-green {
+    color: #0ec254;
+}
+
+.text-red {
+    color: #f04141;
+}
+
+.text-blue {
+    color: #3880ff;
+}
+
+.text-grey {
+    color: #888888;
+}
+
+.text-center {
+    text-align: center;
+}
+
+.bg-color-tertiary {
+    background-color: #7e57ff !important;
+    color: #ffffff;
+}
+
+// modals
+.my-custom-modal-css .modal-wrapper {
+    height: 60%;
+    top: 40%;
+    position: absolute;
+    display: block;
+}

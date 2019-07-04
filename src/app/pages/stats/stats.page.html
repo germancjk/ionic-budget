@@ -1,0 +1,52 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start">
+            <ion-menu-button></ion-menu-button>
+        </ion-buttons>
+        <ion-title>
+            Estadísticas
+        </ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <ion-text>Estadísticas Mensuales</ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+                <ion-col *ngIf="doughnutChartLabels.length > 0 && doughnutChartData.length > 0">
+                    <canvas baseChart [options]="doughnutChartOptions" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+      </canvas>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+
+    <ion-grid>
+        <ion-row>
+            <ion-col text-center>
+                <ion-text>Estadísticas Anuales</ion-text>
+            </ion-col>
+        </ion-row>
+    </ion-grid>
+
+    <ion-card>
+        <ion-grid>
+            <ion-row>
+                <ion-col *ngIf="doughnutChartLabels.length > 0 && doughnutChartData.length > 0">
+                    <canvas baseChart [options]="doughnutChartOptions" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+      </canvas>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+    </ion-card>
+
+</ion-content>
