@@ -1,0 +1,48 @@
+<ion-header>
+    <ion-toolbar color="tertiary">
+        <ion-buttons slot="start" type="button">
+            <ion-label (click)="goHome()">
+                <ion-icon name="arrow-back"></ion-icon> {{ 'back' | translate }}</ion-label>
+        </ion-buttons>
+
+        <ion-title>{{ 'config_title' | translate }}</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <ion-card>
+        <ion-list lines="full" class="ion-no-margin ion-no-padding">
+            <ion-item>
+                <ion-label position="stacked">{{ 'config_wallet_name' | translate }}
+                    <ion-text color="danger">*</ion-text>
+                </ion-label>
+                <ion-input required type="text" [(ngModel)]="configService.config.wallet" placeholder="{{ 'config_wallet_name' | translate }}" (ngModelChange)="change()"></ion-input>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{ 'config_lang' | translate }}</ion-label>
+                <ion-select interface="popover" [(ngModel)]="configService.config.lang" (ngModelChange)="change(true)">
+                    <ion-select-option value="es">Español</ion-select-option>
+                    <ion-select-option value="en">English</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{ 'config_coin' | translate }}</ion-label>
+                <ion-select interface="popover" [(ngModel)]="configService.config.coin" (ngModelChange)="change()">
+                    <ion-select-option value="$">$ - Peso</ion-select-option>
+                    <ion-select-option value="U$D">U$D - Dollar</ion-select-option>
+                    <ion-select-option value="€">€ - Euro</ion-select-option>
+                </ion-select>
+            </ion-item>
+
+            <ion-item>
+                <ion-label>{{ 'config_annual' | translate }}</ion-label>
+                <ion-toggle [(ngModel)]="configService.config.anual" (ngModelChange)="change()"></ion-toggle>
+            </ion-item>
+
+        </ion-list>
+    </ion-card>
+
+</ion-content>

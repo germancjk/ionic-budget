@@ -21,13 +21,8 @@ export class AppComponent {
       icon: 'stats'
     },
     {
-      title: 'Categorias',
-      url: '/stats',
-      icon: 'git-branch'
-    },
-    {
       title: 'Configuración',
-      url: '/stats',
+      url: '/settings',
       icon: 'settings'
     }
   ];

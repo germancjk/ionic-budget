@@ -4,6 +4,7 @@ import { ModalController } from '@ionic/angular';
 
 import { StorageService, Item } from '../../services/storage.service';
 import { ExtrasService } from '../../services/extras.service';
+import { ConfigService } from '../../services/config.service';
 
 import { ModalItemComponent } from '../modal-item/modal-item.component';
 
@@ -21,16 +22,27 @@ export class HomePage implements OnInit {
   dateSelected: number; // to check the month
   datepicker: string;
 
-  monthBalance: number = 0;
-  monthIncome: number = 0;
-  monthExpense: number = 0;
-  accountBalance: number = 0;
+  monthBalance = 0;
+  monthIncome = 0;
+  monthExpense = 0;
+  accountBalance = 0;
+
+  storageWallet: string;
+  storageCoin: string;
+  storageAnual: boolean;
 
   constructor(
               private router: Router,
               private storageService: StorageService,
               private modalController: ModalController,
-              public extrasService: ExtrasService) {
+              public extrasService: ExtrasService,
+              private configService: ConfigService
+              ) {
+
+    this.configService.load();
+    this.storageWallet = this.configService.config.wallet;
+    this.storageCoin = this.configService.config.coin;
+    this.storageAnual = this.configService.config.anual;
   }
 
   ngOnInit() {
@@ -119,7 +131,7 @@ export class HomePage implements OnInit {
   }
 
 
-  itemDetails(i) {
+  itemDetails(i: any) {
     this.router.navigate(['/item', JSON.stringify(i)]);
   }
 

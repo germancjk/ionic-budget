@@ -15,6 +15,8 @@ import { ChartsModule } from 'ng2-charts';
 import { ModalItemComponent } from './pages/modal-item/modal-item.component';
 import { ModalCategoryComponent } from './pages/modal-category/modal-category.component';
 
+import { PipesModule } from './pipes/pipes.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,8 @@ import { ModalCategoryComponent } from './pages/modal-category/modal-category.co
     IonicModule.forRoot(),
     AppRoutingModule,
     IonicStorageModule.forRoot(),
-    ChartsModule
+    ChartsModule,
+    PipesModule
   ],
   providers: [
     StatusBar,

@@ -3,6 +3,7 @@ import { NavParams, AlertController, ModalController } from '@ionic/angular';
 
 import { StorageService, Item } from '../../services/storage.service';
 import { ExtrasService } from '../../services/extras.service';
+import { ConfigService } from '../../services/config.service';
 
 @Component({
   selector: 'app-modal-item',
@@ -18,7 +19,8 @@ export class ModalItemComponent implements OnInit {
         private storageService: StorageService,
         public alertController: AlertController,
         public modalController: ModalController,
-        public extrasService: ExtrasService
+        public extrasService: ExtrasService,
+        public configService: ConfigService
       )  {
 
     this.item = navParams.get('item');
@@ -27,19 +29,25 @@ export class ModalItemComponent implements OnInit {
   ngOnInit() {}
 
   async itemAlertDelete(t: string) {
+    // Lang
+    let lang = this.configService.config.lang;
+    let header = (lang=='es') ? 'Eliminar' : 'Delete';
+    let message = (lang=='es') ? 'Desea eliminar: <strong>' + t + '</strong>?' : 'Do you want to delete: <strong>' + t + '</strong>?';
+    let cancel = (lang=='es') ? 'Cancelar' : 'Cancel';
+
     const alert = await this.alertController.create({
-      header: 'Eliminar',
-      message: 'Desea eliminar: <strong>' + t + '</strong>?',
+      header: header,
+      message: message,
       buttons: [
         {
-          text: 'Cancelar',
+          text: cancel,
           role: 'cancel',
           cssClass: 'secondary',
           handler: (blah) => {
             // console.log('Confirm Cancel: blah');
           }
         }, {
-          text: 'Eliminar',
+          text: header,
           handler: () => {
             // console.log('Confirm Okay');
             this.deleteItem(this.item);

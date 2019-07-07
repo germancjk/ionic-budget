@@ -11,8 +11,6 @@ export class FixdatePipe implements PipeTransform {
         let month = d.slice(4, 6);
         let day = d.slice(6, 8);
 
-        console.log('date', day, month, year);
-
         return `${day}/${month}/${year}`;
     }
 }

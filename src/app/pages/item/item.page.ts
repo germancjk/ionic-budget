@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Item } from '../../services/storage.service';
-import { NumericValueAccessor } from '@ionic/angular';
 
 @Component({
   selector: 'app-item',
@@ -24,7 +23,6 @@ export class ItemPage implements OnInit {
     private activatedRoute: ActivatedRoute
   ) {
     this.item = JSON.parse(this.activatedRoute.snapshot.params.item);
-    console.log(this.item);
 
     this.type = (this.item['type']==='expense') ? 'Gasto' : 'Ingreso';
     this.amount = (this.item['amount']<0) ? this.item['amount']*-1: this.item['amount'];

@@ -4,7 +4,7 @@
             <ion-menu-button></ion-menu-button>
         </ion-buttons>
         <ion-title>
-            Germán
+            {{ storageWallet }}
         </ion-title>
     </ion-toolbar>
 </ion-header>
@@ -16,31 +16,31 @@
         <ion-row>
             <ion-col size="8" padding>
                 <div>
-                    <ion-text class="px12">Balance mensual</ion-text>
+                    <ion-text class="px12">{{ 'home_balance_mensual' | translate }}</ion-text>
                 </div>
                 <div>
-                    <ion-text class="px22">€ {{ monthBalance | number : '1.2-2' }}</ion-text>
+                    <ion-text class="px22">{{ storageCoin }} {{ monthBalance | number : '1.2-2' }}</ion-text>
                 </div>
-                <div>
-                    <ion-text class="px12">Balance acumulado</ion-text>
+                <div *ngIf="storageAnual">
+                    <ion-text class="px12">{{ 'home_balance_total' | translate }}</ion-text>
                 </div>
-                <div>
-                    <ion-text class="px16">€ {{ accountBalance | number : '1.2-2' }}</ion-text>
+                <div *ngIf="storageAnual">
+                    <ion-text class="px16">{{ storageCoin }} {{ accountBalance | number : '1.2-2' }}</ion-text>
                 </div>
             </ion-col>
 
             <ion-col size="4" padding text-right>
                 <div>
-                    <ion-text class="px12">Ingresos mes</ion-text>
+                    <ion-text class="px12">{{ 'home_incomes' | translate }}</ion-text>
                 </div>
                 <div>
-                    <ion-text class="px16">€ {{ monthIncome | number : '1.2-2' }}</ion-text>
+                    <ion-text class="px16">{{ storageCoin }} {{ monthIncome | number : '1.2-2' }}</ion-text>
                 </div>
                 <div>
-                    <ion-text class="px12">Gastos mes</ion-text>
+                    <ion-text class="px12">{{ 'home_expenses' | translate }}</ion-text>
                 </div>
                 <div>
-                    <ion-text class="px16">€ {{ monthExpense | number : '1.2-2' }}</ion-text>
+                    <ion-text class="px16">{{ storageCoin }} {{ monthExpense | number : '1.2-2' }}</ion-text>
                 </div>
             </ion-col>
         </ion-row>
@@ -48,21 +48,27 @@
     <!-- end balance -->
 
     <!-- select month -->
-    <ion-list lines="full" class="ion-no-margin ion-no-padding">
-        <ion-item>
-            <ion-icon name="calendar"></ion-icon>
-            <ion-datetime [(ngModel)]="datepicker" (ngModelChange)="show()" placeholder="Selecciona" display-format="MMMM, YYYY" picker-format="MMMM, YYYY" monthNames="Enero, Febrero, Marzo, Abril, Mayo, Junio, Julio, Agosto, Septiembre, Octubre, Noviembre, Diciembre"></ion-datetime>
-        </ion-item>
+    <ion-list lines="full" class="margin-bottom-0">
+        <ion-row>
+            <ion-col></ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-icon name="calendar"></ion-icon>
+                    <ion-datetime [(ngModel)]="datepicker" (ngModelChange)="show()" placeholder="{{ 'select' | translate }}" display-format="MMMM, YYYY" picker-format="MMMM, YYYY" monthNames="{{ 'home_months' | translate }}"></ion-datetime>
+                </ion-item>
+            </ion-col>
+            <ion-col></ion-col>
+        </ion-row>
     </ion-list>
     <!-- end select month -->
 
     <!-- list -->
-    <ion-card>
+    <ion-card *ngIf="itemsShow.length > 0">
         <ion-grid>
             <ion-row *ngFor="let item of itemsShow" class="padding-list px15" (click)="detailModal(item)">
                 <ion-col size="1" class="ion-text-center">
                     <ion-text>
-                        <img [src]="item.category | iconurl" alt="" style="margin-top: 5px;">
+                        <img [src]="item.category | categories: 'iconurl'" alt="" style="margin-top: 5px;">
                     </ion-text>
                 </ion-col>
                 <ion-col size="7">
@@ -72,13 +78,13 @@
                         </ion-text>
                     </div>
                     <div>
-                        <ion-text class="text-grey px12"> {{ this.extrasService.name(item.category) }} </ion-text>
+                        <ion-text class="text-grey px12"> {{ item.category | categories: 'name' }} </ion-text>
                     </div>
                 </ion-col>
                 <ion-col class="ion-text-right">
                     <div>
                         <ion-text [className]="(item.amount>=0) ? 'text-green' : ''">
-                            € {{ item.amount | number : '1.2-2' }}
+                            {{ storageCoin }} {{ item.amount | number : '1.2-2' }}
                         </ion-text>
                     </div>
                     <div>
@@ -91,12 +97,13 @@
     <!-- end list -->
 
     <ion-card *ngIf="itemsShow.length===0">
+        <img src="../../../assets/example.jpg" />
         <ion-card-header>
-            <ion-card-subtitle>Comienza Ahora</ion-card-subtitle>
-            <ion-card-title>Bienvenido</ion-card-title>
+            <ion-card-subtitle>{{ 'home_card_start' | translate }}</ion-card-subtitle>
+            <ion-card-title>{{ 'home_card_welcome' | translate }}</ion-card-title>
         </ion-card-header>
         <ion-card-content>
-            <p>Pulsa el signo de + para agregar tu ingreso o gasto.</p>
+            <p>{{ 'home_card_content' | translate }}</p>
         </ion-card-content>
     </ion-card>
 

@@ -4,7 +4,7 @@
             <ion-col size="2">
                 <ion-icon color="danger" name="trash" size="large" (click)="itemAlertDelete(item.title)"></ion-icon>
             </ion-col>
-            <ion-col text-center>Detalle del movimiento</ion-col>
+            <ion-col text-center>{{ 'detail_title' | translate }}</ion-col>
             <ion-col size="2" text-right>
                 <ion-icon name="close" size="large" (click)="closeModal()"></ion-icon>
             </ion-col>
@@ -15,7 +15,7 @@
         <ion-grid>
             <ion-row padding>
                 <ion-col></ion-col>
-                <ion-col text-center size="2"><img [src]="this.extrasService.icon(item.category)" alt=""></ion-col>
+                <ion-col text-center size="2"><img [src]="item.category | categories: 'iconurl'" alt=""></ion-col>
                 <ion-col></ion-col>
             </ion-row>
 
@@ -28,8 +28,8 @@
                         </ion-text>
                     </div>
                     <div class="px18">{{ item.title | titlecase }}</div>
-                    <div class="px16 text-grey">{{ item.date }}</div>
-                    <div class="px16 text-grey">{{ this.extrasService.name(item.category) }}</div>
+                    <div class="px16 text-grey">{{ item.date | fixdate }}</div>
+                    <div class="px16 text-grey">{{ item.category | categories: 'name' }}</div>
                 </ion-col>
                 <ion-col size="2"></ion-col>
             </ion-row>

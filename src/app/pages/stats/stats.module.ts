@@ -9,6 +9,9 @@ import { StatsPage } from './stats.page';
 
 import { ChartsModule } from 'ng2-charts';
 
+// Pipes
+import { PipesModule } from '../../pipes/pipes.module';
+
 const routes: Routes = [
   {
     path: '',
@@ -22,6 +25,7 @@ const routes: Routes = [
     FormsModule,
     IonicModule,
     ChartsModule,
+    PipesModule,
     RouterModule.forChild(routes)
   ],
   declarations: [StatsPage]

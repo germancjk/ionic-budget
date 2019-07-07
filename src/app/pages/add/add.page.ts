@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { StorageService, Item } from '../../services/storage.service';
 
@@ -15,13 +15,14 @@ export class AddPage implements OnInit {
   type: string;
   newItem: Item = {} as Item;
   selected: string;
-  selectedCategory: number;
+  selectedCategory = 0;
 
   constructor( private router: Router,  private storageService: StorageService, private modalController: ModalController ) { }
 
   ngOnInit() {
     this.type = 'expense';
     this.selected = 'today';
+    this.selectedCategory = 0;
   }
 
   changeType(type: string ) {

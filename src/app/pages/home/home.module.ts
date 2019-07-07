@@ -5,15 +5,16 @@ import { IonicModule } from '@ionic/angular';
 import { RouterModule } from '@angular/router';
 
 import { HomePage } from './home.page';
+
 // Pipes
-import { FixdatePipe } from '../../pipes/fixdate.pipe';
-import { IconurlPipe } from '../../pipes/iconurl.pipe';
+import { PipesModule } from '../../pipes/pipes.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    PipesModule,
     RouterModule.forChild([
       {
         path: '',
@@ -21,6 +22,6 @@ import { IconurlPipe } from '../../pipes/iconurl.pipe';
       }
     ])
   ],
-  declarations: [HomePage, FixdatePipe, IconurlPipe]
+  declarations: [HomePage]
 })
 export class HomePageModule {}

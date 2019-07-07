@@ -1,20 +1,36 @@
 <ion-header>
     <ion-toolbar color="tertiary">
-        <ion-buttons slot="start">
-            <ion-menu-button></ion-menu-button>
+        <ion-buttons slot="start" type="button">
+            <ion-label (click)="goHome()">
+                <ion-icon name="arrow-back"></ion-icon> {{ 'back' | translate }}</ion-label>
         </ion-buttons>
         <ion-title>
-            Estadísticas
+            {{ 'stats_title' | translate }}
         </ion-title>
     </ion-toolbar>
 </ion-header>
 
 <ion-content>
 
+    <!-- select month -->
+    <ion-list lines="full" class="margin-bottom-0">
+        <ion-row>
+            <ion-col></ion-col>
+            <ion-col>
+                <ion-item>
+                    <ion-icon name="calendar"></ion-icon>
+                    <ion-datetime [(ngModel)]="datepicker" (ngModelChange)="show()" placeholder="{{ 'select' | translate }}" display-format="MMMM, YYYY" picker-format="MMMM, YYYY" monthNames="{{ 'home_months' | translate }}"></ion-datetime>
+                </ion-item>
+            </ion-col>
+            <ion-col></ion-col>
+        </ion-row>
+    </ion-list>
+    <!-- end select month -->
+
     <ion-grid>
         <ion-row>
             <ion-col text-center>
-                <ion-text>Estadísticas Mensuales</ion-text>
+                <ion-text>{{ 'stats_monthly' | translate }}</ion-text>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -22,7 +38,7 @@
     <ion-card>
         <ion-grid>
             <ion-row>
-                <ion-col *ngIf="doughnutChartLabels.length > 0 && doughnutChartData.length > 0">
+                <ion-col *ngIf="showStats">
                     <canvas baseChart [options]="doughnutChartOptions" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
       </canvas>
                 </ion-col>
@@ -33,7 +49,7 @@
     <ion-grid>
         <ion-row>
             <ion-col text-center>
-                <ion-text>Estadísticas Anuales</ion-text>
+                <ion-text>{{ 'stats_year' | translate }}</ion-text>
             </ion-col>
         </ion-row>
     </ion-grid>
@@ -41,8 +57,8 @@
     <ion-card>
         <ion-grid>
             <ion-row>
-                <ion-col *ngIf="doughnutChartLabels.length > 0 && doughnutChartData.length > 0">
-                    <canvas baseChart [options]="doughnutChartOptions" [data]="doughnutChartData" [labels]="doughnutChartLabels" [chartType]="doughnutChartType">
+                <ion-col *ngIf="showStatsAnual">
+                    <canvas baseChart [options]="doughnutChartOptions" [data]="doughnutChartDataAnual" [labels]="doughnutChartLabelsAnual" [chartType]="doughnutChartType">
       </canvas>
                 </ion-col>
             </ion-row>

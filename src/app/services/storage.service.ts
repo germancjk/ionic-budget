@@ -10,7 +10,7 @@ export interface Item {
   title?: string;
 }
 
-const ITEMS_KEY = 'my-budget';
+const ITEMS_KEY = 'mybudget';
 
 @Injectable({
   providedIn: 'root'

@@ -6,25 +6,57 @@
 
             <ion-content>
 
-                <ion-list>
-                    <ion-item color="secondary">
-                        <ion-avatar slot="start">
-                            <img src="../assets/avatar.jpg">
-                        </ion-avatar>
-                        <ion-label>
-                            <h3>Iniciar sesión </h3>
-                        </ion-label>
-                    </ion-item>
-                </ion-list>
+                <!-- <ion-grid lines="full" class="bg-color-tertiary" padding>
+                    <ion-row class="bg-color-tertiary">
+                        <ion-col>
+                            <ion-avatar class="ion-margin-start">
+                                <img src="../assets/avatar.jpg">
+                            </ion-avatar>
+                            <ion-list-header>Iniciar sesión</ion-list-header>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid> -->
 
-                <ion-list lines="none">
-                    <ion-menu-toggle auto-hide="false" *ngFor="let p of appPages">
-                        <ion-item [routerDirection]="'root'" [routerLink]="[p.url]">
-                            <ion-icon slot="start" [name]="p.icon"></ion-icon>
+                <ion-grid lines="full" class="bg-color-tertiary" style="padding: 30px 20px 30px 20px;">
+                    <ion-row class="bg-color-tertiary">
+                        <ion-col text-center>
+                            <img src="../assets/wallet.png" style="display: block; margin-left: auto; margin-right: auto;">
+                            <ion-text class="px12">Version 1.0.0</ion-text>
+                        </ion-col>
+                    </ion-row>
+                </ion-grid>
+
+                <ion-list lines="none" style="margin-top: 30px;">
+                    <ion-menu-toggle auto-hide="false">
+
+                        <ion-item [routerDirection]="'root'" [routerLink]="['/home']">
+                            <ion-icon color="tertiary" slot="start" name="home" class="px16"></ion-icon>
                             <ion-label>
-                                {{p.title}}
+                                <ion-text class="px14">{{ 'home' | translate }}</ion-text>
                             </ion-label>
                         </ion-item>
+
+                        <ion-item [routerDirection]="'root'" [routerLink]="['/stats']">
+                            <ion-icon color="primary" slot="start" name="stats" class="px16"></ion-icon>
+                            <ion-label>
+                                <ion-text class="px14">{{ 'stats_title' | translate }}</ion-text>
+                            </ion-label>
+                        </ion-item>
+
+                        <ion-item [routerDirection]="'root'" [routerLink]="['/settings']">
+                            <ion-icon color="success" slot="start" name="settings" class="px16"></ion-icon>
+                            <ion-label>
+                                <ion-text class="px14">{{ 'settings' | translate }}</ion-text>
+                            </ion-label>
+                        </ion-item>
+
+                        <ion-item [routerDirection]="'root'" [routerLink]="['/settings']">
+                            <ion-icon color="warning" slot="start" name="star" class="px16"></ion-icon>
+                            <ion-label>
+                                <ion-text class="px14">{{ 'rateus' | translate }}</ion-text>
+                            </ion-label>
+                        </ion-item>
+
                     </ion-menu-toggle>
                 </ion-list>
 
